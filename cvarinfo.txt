@@ -30,6 +30,8 @@ server float cd_monster_health_mult = 0;
 server float cd_monster_speed_mult  = 0;
 server int   cd_monster_health_cap  = 0;
 
+server bool  cd_monster_health_prog = false;
+
 // Health regeneration menu CVARs //////////////////////////////////////////////
 
 server bool  cd_health_regen_enabled = false;

@@ -26,7 +26,7 @@ class cd_Monsters play
   static
   void applyMonsterMultipliersTo(Actor thing, cd_MonsterSettings settings)
   {
-    applyHealthMultiplierTo(thing, settings.healthMultiplier(), settings.healthCap());
+    applyHealthMultiplierTo(thing, settings.healthMultiplier(), settings.healthProg(), settings.healthCap());
     applySpeedMultiplierTo (thing, settings.speedMultiplier ());
   }
 
@@ -47,8 +47,9 @@ class cd_Monsters play
 // private: ////////////////////////////////////////////////////////////////////////////////////////
 
   private static
-  void applyHealthMultiplierTo(Actor thing, double multiplier, int cap)
+  void applyHealthMultiplierTo(Actor thing, double multiplier, bool prog, int cap)
   {
+    if (prog) { multiplier = (multiplier * (level.levelNum - 1)) - level.levelNum + 2; }
     if (multiplier <= 0) { multiplier = 1; }
 
     // LegenDoom Lite
@@ -60,7 +61,7 @@ class cd_Monsters play
     int    oldHealth      = thing.health;
     double relativeHealth = double(oldHealth) / oldStartHealth;
 
-    int    newStartHealth = cd_math.round(defStartHealth * multiplier * ldlMultiplier);
+    int    newStartHealth = cd_math.round((defStartHealth * multiplier * ldlMultiplier));
     int    newHealth      = cd_math.round(newStartHealth * relativeHealth);
 
     if (cap > 0 && newStartHealth > cap) newStartHealth = cap;

@@ -140,7 +140,12 @@ OptionMenu cd_Monster
   cd_MinField "$CD_MONSTER_HEALTH_CAP" , cd_monster_health_cap  , 0
 
   StaticText  ""
+  Option "$CD_MONSTER_HEALTH_PROG", cd_monster_health_prog , OnOff
+
+  StaticText  ""
   Command     "$CD_APPLY_MONSTER_CAPTION", cd_apply_monster_settings
+
+ 
 
 } // OptionMenu cd_Monster
 
